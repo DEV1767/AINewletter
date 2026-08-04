@@ -197,4 +197,4 @@ Create this week's newsletter from these research summaries:
 
     return {
         "email_content": response.content
-    }
+    } 
