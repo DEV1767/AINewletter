@@ -134,10 +134,23 @@ VISUAL DESIGN REQUIREMENTS (very important — make it colorful and inviting)
   colored left border or top accent bar (rotate through 3-4 accent colors
   across cards, e.g. purple, blue, teal, orange, so consecutive papers look
   visually distinct but part of the same family).
-- Use small colored "pill" or "badge" labels (rounded background, white or
-  dark text, bold, small font-size) for each subsection header — "The
-  Problem", "The Idea", "What They Found", "Why It Matters" — each with its
-  own accent color and emoji, so they're instantly scannable.
+- Use small colored "pill" or "badge" labels (rounded background, dark
+  text, bold, small font-size, uppercase, letter-spacing) for each
+  subsection header — "The Problem", "The Idea", "What They Found", "Why
+  It Matters" — each with its own soft pastel accent color and emoji.
+  CRITICAL: the badge must sit on its OWN line, in its own block-level
+  wrapper (e.g. a <div> or a <table> row), with a small margin-bottom
+  (around 6px) before the paragraph. Never place the badge directly inline
+  immediately before the paragraph text on the same line — that causes the
+  body text to awkwardly wrap around/after the badge instead of starting
+  cleanly on its own line below it. The paragraph text always starts fresh
+  on the line under the badge.
+- Give each paper card generous internal spacing: at least 16-18px of
+  vertical margin between each Problem/Idea/Findings/Why-it-matters block,
+  so the card doesn't feel cramped.
+- Give the paper title inside each card noticeably more bottom margin
+  (about 16-18px) before the first badge/section begins, so the title
+  doesn't feel jammed against the content.
 - Use a distinct background color/tint (not white, not the accent color at
   full strength — a soft tint like #EEF2FF or #FFF7ED) for the opening
   summary box and for the Key Takeaways box, with rounded corners and a
