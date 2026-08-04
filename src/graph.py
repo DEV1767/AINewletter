@@ -2,8 +2,8 @@ from langgraph.graph import StateGraph, START, END
 from langgraph.prebuilt import ToolNode
 
 from src.state import ResearchState
+
 from src.nodes.researcher import researcher
-from src.tools.arxiv import search_arxiv
 from src.nodes.evaluter import evaluator
 from src.nodes.pdf_loader import pdf_loader
 from src.nodes.chunker import chunker
@@ -11,8 +11,14 @@ from src.nodes.summarizer import paper_summarizer
 from src.nodes.newsletter import newsletter_writer
 from src.nodes.email_sender import email_sender
 
+from src.tools.arxiv import search_arxiv
+
+
 
 tools = [search_arxiv]
+
+
+
 
 builder = StateGraph(ResearchState)
 
@@ -30,7 +36,10 @@ builder.add_node("email_sender", email_sender)
 
 
 
+
 builder.add_edge(START, "researcher")
+
+
 
 
 def researcher_router(state: ResearchState):
@@ -53,12 +62,21 @@ builder.add_conditional_edges(
 )
 
 
-builder.add_edge("tools", "researcher")
+
+builder.add_edge("tools", "evaluator")
+
 builder.add_edge("evaluator", "pdf_loader")
+
 builder.add_edge("pdf_loader", "chunker")
+
 builder.add_edge("chunker", "summarizer")
+
 builder.add_edge("summarizer", "newsletter")
+
 builder.add_edge("newsletter", "email_sender")
+
 builder.add_edge("email_sender", END)
+
+
 
 research_graph = builder.compile()
