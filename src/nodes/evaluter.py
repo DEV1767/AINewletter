@@ -17,8 +17,7 @@ def evaluator(state: ResearchState):
     papers = state["papers"]
 
     system_message = SystemMessage(
-        system_message = SystemMessage(
-    content="""
+        content="""
 You are the paper-selection agent for a technical AI research newsletter.
 
 Your job is to evaluate candidate research papers and identify which ones
