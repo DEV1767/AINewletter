@@ -25,7 +25,7 @@ initial_state = {
 result = research_graph.invoke(
     initial_state,
     config={
-        "recursion_limit": 10
+        "recursion_limit": 25
     }
 )
 
