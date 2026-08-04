@@ -1,10 +1,12 @@
 import os
+
 from langchain_groq import ChatGroq
 from langchain_core.messages import SystemMessage, HumanMessage
 
 from src.state import ResearchState, RankedPapers
 
-llm= ChatGroq(
+
+llm = ChatGroq(
     model="llama-3.3-70b-versatile",
     api_key=os.getenv("GROQ_API_KEY_1")
 )
@@ -63,12 +65,12 @@ SELECTION RULES
 - Do not invent contributions that are not supported by the input.
 - Be selective. Do not give every paper a high score.
 - Different papers may receive the same score when justified.
-- The reason should explain the strongest reason for the score.
 - Keep the reason concise and evidence-based.
+- Do NOT generate or modify PDF URLs.
 
 Return papers ordered from highest score to lowest score.
 """
-)
+    )
 
     human_message = HumanMessage(
         content=str(papers)
@@ -78,6 +80,27 @@ Return papers ordered from highest score to lowest score.
         system_message,
         human_message
     ])
+
+    # Add the original PDF URL from arXiv
+    for ranked_paper in response.papers:
+
+        original_paper = next(
+            (
+                paper
+                for paper in papers
+                if paper["title"] == ranked_paper.title
+            ),
+            None
+        )
+
+        if original_paper:
+            ranked_paper.pdf_url = original_paper["pdf_url"]
+
+    # Sort again in Python for reliability
+    response.papers.sort(
+        key=lambda paper: paper.score,
+        reverse=True
+    )
 
     return {
         "ranked_papers": response.papers

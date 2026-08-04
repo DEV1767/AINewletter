@@ -24,7 +24,7 @@ class RankedPaper(BaseModel):
         description="Importance score from 0 to 10"
     )
     reason: str
-    pdf_url: str
+    pdf_url: str|None=None
 
 
 class RankedPapers(BaseModel):
