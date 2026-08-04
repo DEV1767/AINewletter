@@ -3,25 +3,17 @@ from src.graph import research_graph
 
 
 initial_state = {
-
-    "messages": [
-        HumanMessage(
-            content=(
-                "Find recent, high-quality research papers strictly within the field of "
-                "Artificial Intelligence (AI). This includes all major AI subfields such as: "
-                "Large Language Models (LLMs), Agentic AI and AI agents, Machine Learning, "
-                "Deep Learning, Reinforcement Learning, Natural Language Processing (NLP), "
-                "Computer Vision, Multimodal AI, Generative AI, AI Safety and Alignment, "
-                "Retrieval-Augmented Generation (RAG), Model efficiency/optimization, and "
-                "AI systems/infrastructure research. Do not restrict results to only one "
-                "subfield (e.g. do not fetch only agentic AI papers) — cover the breadth of "
-                "current AI research so no important paper from a major subfield is missed. "
-                "Exclude papers that are not fundamentally about AI/ML (e.g. purely "
-                "unrelated physics, biology, or general software engineering papers that "
-                "don't involve AI/ML methods)."
-            )
+"messages": [
+    HumanMessage(
+        content=(
+            "Find recent high-quality research papers in Artificial Intelligence. "
+            "Focus on important and practical AI research such as LLMs, Agentic AI, "
+            "Generative AI, RAG, multimodal AI, and AI systems. "
+            "Use only ONE broad arXiv search query and return the most relevant papers. "
+            "Exclude papers that are not fundamentally related to AI/ML."
         )
-    ],
+    )
+],
 
     "papers": [],
     "ranked_papers": [],
