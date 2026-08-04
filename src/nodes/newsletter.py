@@ -155,6 +155,9 @@ VISUAL DESIGN REQUIREMENTS (very important — make it colorful and inviting)
 - Include a simple, tasteful footer (small, muted gray text) at the very
   bottom, e.g. a one-line sign-off like "See you next week — AI Research
   Weekly" plus a muted note that this is auto-curated from recent papers.
+  On its own line below that, add a small, muted credit line exactly as:
+  "Automated by Shivam Chaudhary" (centered, subtle font-size ~12px,
+  light gray color, no link, no emoji).
 - Ensure everything renders well on both desktop and mobile email clients
   (use max-width, percentage widths, and padding rather than fixed pixel
   widths for inner elements; avoid multi-column layouts).

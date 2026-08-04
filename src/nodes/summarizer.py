@@ -45,7 +45,7 @@ def paper_summarizer(state: ResearchState):
         )
 
         response = summary_model.invoke([
-            system_prompt = """
+            SystemMessage(content="""
 You are a research-paper analysis agent in a RAG pipeline.
 
 Your task is to produce an accurate technical summary using ONLY the
@@ -86,7 +86,7 @@ STYLE
 - Avoid repeating the paper title as an explanation
 
 Return the required structured output only.
-""",
+"""),
 
             HumanMessage(
                 content=f"""
