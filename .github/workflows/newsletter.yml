@@ -1,0 +1,48 @@
+name: AI Research Newsletter
+
+on:
+  # Allows you to test it manually
+  workflow_dispatch:
+
+  # We'll add weekly scheduling after testing
+  # schedule:
+  #   - cron: "0 4 * * 0"
+
+jobs:
+  generate-newsletter:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Get your GitHub code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Install Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: "pip"
+
+      # 3. Cache Hugging Face model
+      - name: Cache Hugging Face models
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: huggingface-bge-small-en-v1-5
+
+      # 4. Install dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # 5. Run your LangGraph pipeline
+      - name: Generate and send newsletter
+        env:
+          GROQ_API_KEY_1: ${{ secrets.GROQ_API_KEY_1 }}
+          GROQ_API_KEY_2: ${{ secrets.GROQ_API_KEY_2 }}
+          APP_EMAIL: ${{ secrets.APP_EMAIL }}
+          APP_EMAIL_PASSWORD: ${{ secrets.APP_EMAIL_PASSWORD }}
+        run: python main.py
