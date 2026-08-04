@@ -13,7 +13,7 @@ from typing_extensions import Annotated
 def search_arxiv(
     query: str,
     tool_call_id: Annotated[str, InjectedToolCallId],
-    max_results: int = 5
+    max_results: int = 10
 ) -> Command:
     """Search arXiv for recent research papers."""
 
@@ -25,7 +25,7 @@ def search_arxiv(
 
     search = arxiv.Search(
         query=query,
-        max_results=max_results,
+        max_results=max(1, min(int(max_results), 10)),
         sort_by=arxiv.SortCriterion.SubmittedDate,
         sort_order=arxiv.SortOrder.Descending
     )
