@@ -1,6 +1,0 @@
-myvenv/
-.env
-.git/
-__pycache__/
-*.pyc
-.cache/
