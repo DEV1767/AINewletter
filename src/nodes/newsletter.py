@@ -5,11 +5,7 @@ from langchain_core.messages import SystemMessage, HumanMessage
 
 from src.state import ResearchState
 
-
-model = ChatGroq(
-    model="llama-3.3-70b-versatile",
-    api_key=os.getenv("GROQ_API_KEY_1")
-)
+model = ChatGroq(model="llama-3.3-70b-versatile", api_key=os.getenv("GROQ_API_KEY_1"))
 
 
 def newsletter_writer(state: ResearchState):
@@ -185,17 +181,15 @@ Return ONLY the final HTML document, starting with a wrapping <div> or
 inserted directly into an email body).
 """
 
-    response = model.invoke([
-        SystemMessage(content=system_prompt),
-        HumanMessage(
-            content=f"""
+    response = model.invoke(
+        [
+            SystemMessage(content=system_prompt),
+            HumanMessage(content=f"""
 Create this week's newsletter from these research summaries:
 
 {paper_content}
-"""
-        )
-    ])
+"""),
+        ]
+    )
 
-    return {
-        "email_content": response.content
-    } 
+    return {"email_content": response.content}
