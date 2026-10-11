@@ -5,7 +5,7 @@ from langchain_core.messages import SystemMessage, HumanMessage
 
 from src.state import ResearchState
 
-model = ChatGroq(model="llama-3.3-70b-versatile", api_key=os.getenv("GROQ_API_KEY_1"))
+model = ChatGroq(model="openai/gpt-oss-120b", api_key=os.getenv("GROQ_API_KEY_1"))
 
 
 def newsletter_writer(state: ResearchState):
